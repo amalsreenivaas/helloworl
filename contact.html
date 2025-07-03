@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact - Enquiry Form</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- AOS Library -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <!-- SweetAlert2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <style>
+    :root {
+      --main-color: #38bdf8;
+      --text-color: #0f172a;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #0f172a;
+      color: white;
+      padding-top: 90px;
+      overflow-x: hidden;
+    }
+
+    header {
+      background: #fff;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      animation: slideDown 1s ease forwards;
+    }
+
+    @keyframes slideDown {
+      0% { transform: translateY(-100%); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+    }
+
+    nav .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: var(--main-color);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: var(--text-color);
+      font-weight: 500;
+      position: relative;
+    }
+
+    nav ul li a::after {
+      content: '';
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      bottom: -3px;
+      left: 0;
+      background: var(--main-color);
+      transition: width 0.4s ease;
+    }
+
+    nav ul li a:hover::after {
+      width: 100%;
+    }
+
+    .contact-section {
+      position: relative;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 50px;
+      padding: 60px 20px;
+      max-width: 1200px;
+      margin: auto;
+      z-index: 10;
+    }
+
+    .form-box {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      box-shadow: 0 0 30px var(--main-color);
+      padding: 40px;
+      width: 100%;
+      max-width: 500px;
+      z-index: 10;
+    }
+
+    .form-box h2 {
+      text-align: center;
+      color: var(--main-color);
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 1rem;
+      border: none;
+      outline: none;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      border-radius: 10px;
+      font-size: 1rem;
+    }
+
+    .form-group label {
+      position: absolute;
+      top: -12px;
+      left: 15px;
+      background: #0f172a;
+      padding: 0 5px;
+      font-size: 0.85rem;
+      color: var(--main-color);
+    }
+
+    .form-group textarea {
+      resize: none;
+      height: 120px;
+    }
+
+    .btn {
+      width: 100%;
+      background: var(--main-color);
+      color: #0f172a;
+      border: none;
+      padding: 1rem;
+      font-weight: bold;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::after {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, #22d3ee33 10%, transparent 70%);
+      animation: pulse 2s infinite;
+      z-index: 0;
+    }
+
+    .btn span {
+      position: relative;
+      z-index: 1;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(0.9); opacity: 1; }
+      100% { transform: scale(1.4); opacity: 0; }
+    }
+
+    .info-box {
+      color: white;
+      max-width: 400px;
+      padding: 20px;
+      z-index: 10;
+    }
+
+    .info-box h3 {
+      color: var(--main-color);
+      margin-bottom: 20px;
+    }
+
+    .info-item {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 15px;
+    }
+
+    .info-item i {
+      font-size: 1.5rem;
+      color: var(--main-color);
+    }
+
+    #lottie-bg {
+      position: fixed;
+      top: 90px;
+      left: 0;
+      width: 100%;
+      height: calc(100% - 90px);
+      z-index: 1;
+      opacity: 0.2;
+      pointer-events: none;
+    }
+
+    /* Floating Stars Background */
+    .star {
+      position: fixed;
+      width: 2px;
+      height: 2px;
+      background: #38bdf8;
+      border-radius: 50%;
+      animation: floatStar 8s linear infinite;
+    }
+
+    @keyframes floatStar {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) scale(0.5);
+        opacity: 0;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .contact-section {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Lottie Background -->
+  <div id="lottie-bg"></div>
+
+  <!-- Floating Stars -->
+  <script>
+    for (let i = 0; i < 50; i++) {
+      let star = document.createElement('div');
+      star.classList.add('star');
+      star.style.left = Math.random() * 100 + 'vw';
+      star.style.top = Math.random() * 100 + 'vh';
+      star.style.animationDuration = (Math.random() * 5 + 5) + 's';
+      document.body.appendChild(star);
+    }
+  </script>
+
+  <!-- Header -->
+  <header>
+    <nav>
+      <div class="logo">MySite</div>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Contact Section -->
+  <section class="contact-section">
+    <!-- Contact Form -->
+    <div class="form-box" data-aos="fade-up">
+      <h2>Send Us a Message</h2>
+      <form id="contactForm">
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Your Email</label>
+          <input type="email" id="email" required>
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" required></textarea>
+        </div>
+        <button class="btn" type="submit"><span>Submit</span></button>
+      </form>
+    </div>
+
+    <!-- Contact Info -->
+    <div class="info-box" data-aos="fade-left">
+      <h3>Contact Info</h3>
+      <div class="info-item">
+        <i class="bi bi-geo-alt-fill"></i>
+        <span>Kottayam, Kerala, India</span>
+      </div>
+      <div class="info-item">
+        <i class="bi bi-telephone-fill"></i>
+        <span>+91 9000000</span>
+      </div>
+      <div class="info-item">
+        <i class="bi bi-envelope-fill"></i>
+        <span>info@yoursite.com</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- AOS Script -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>AOS.init({ duration: 1200 });</script>
+
+  <!-- Lottie JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.0/lottie.min.js"></script>
+  <script>
+    lottie.loadAnimation({
+      container: document.getElementById('lottie-bg'),
+      renderer: 'svg',
+      loop: true,
+      autoplay: true,
+      path: 'https://assets5.lottiefiles.com/packages/lf20_yguxwh1h.json'
+    });
+  </script>
+
+  <!-- Submit Alert -->
+  <script>
+    document.getElementById("contactForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const message = document.getElementById("message").value.trim();
+
+      if (!name || !email || !message) {
+        Swal.fire({
+          icon: 'warning',
+          title: 'Please fill all fields!',
+          toast: true,
+          position: 'top-end',
+          timer: 2000,
+          showConfirmButton: false
+        });
+        return;
+      }
+
+      Swal.fire({
+        icon: 'success',
+        title: 'Message Sent!',
+        text: 'Thank you for contacting us!',
+        confirmButtonColor: '#38bdf8'
+      });
+
+      // Clear form
+      document.getElementById("contactForm").reset();
+    });
+  </script>
+
+</body>
+</html>

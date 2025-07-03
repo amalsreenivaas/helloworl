@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>About - Animated Section</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --main-color: #38bdf8;
+      --text-color: #0f172a;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #0f172a;
+      color: white;
+      overflow-x: hidden;
+      padding-top: 90px; /* Space for fixed header */
+    }
+
+    /* Header Styles */
+    header {
+      background: #fff;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      animation: slideDown 1s ease forwards;
+    }
+
+    @keyframes slideDown {
+      0% { transform: translateY(-100%); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+    }
+
+    nav .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: var(--main-color);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: var(--text-color);
+      font-weight: 500;
+      position: relative;
+    }
+
+    nav ul li a::after {
+      content: '';
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      bottom: -3px;
+      left: 0;
+      background: var(--main-color);
+      transition: width 0.4s ease;
+    }
+
+    nav ul li a:hover::after {
+      width: 100%;
+    }
+
+    /* About Section */
+    .about-section {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      padding: 2rem;
+    }
+
+    .planet {
+      position: absolute;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.05);
+      border: 2px solid var(--main-color);
+      animation: rotate 20s linear infinite;
+    }
+
+    .planet:nth-child(1) {
+      width: 300px;
+      height: 300px;
+      top: 10%;
+      left: 5%;
+    }
+
+    .planet:nth-child(2) {
+      width: 200px;
+      height: 200px;
+      top: 60%;
+      left: 75%;
+      animation-duration: 25s;
+    }
+
+    .planet:nth-child(3) {
+      width: 400px;
+      height: 400px;
+      top: 40%;
+      left: 30%;
+      animation-duration: 30s;
+    }
+
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    .about-content {
+      position: relative;
+      z-index: 10;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      padding: 3rem;
+      border-radius: 20px;
+      box-shadow: 0 0 20px var(--main-color);
+      animation: fadeInUp 2s ease forwards;
+      max-width: 600px;
+      text-align: center;
+    }
+
+    .about-content h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--main-color);
+    }
+
+    .about-content p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      color: #e0e0e0;
+    }
+
+    @keyframes fadeInUp {
+      0% {
+        transform: translateY(40px);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <nav>
+      <div class="logo">MySite</div>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Animated About Section -->
+  <section class="about-section">
+    <div class="planet"></div>
+    <div class="planet"></div>
+    <div class="planet"></div>
+
+    <div class="about-content">
+      <h1>About</h1>
+      <p>
+        Welcome to our universe of innovation! We blend creativity, technology, and user-centered design to craft
+        unique digital experiences. Dive in and explore how we transform ideas into reality.
+      </p>
+    </div>
+  </section>
+
+</body>
+</html>

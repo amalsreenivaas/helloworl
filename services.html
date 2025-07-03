@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Animated Services Section</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- AOS Animation Library -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+  <style>
+    :root {
+      --main-color: #00ffe5;
+      --text-color: #0f2027;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Orbitron', sans-serif;
+      background: linear-gradient(to right, #2c5364, #203a43, #0f2027);
+      color: white;
+      padding-top: 80px; /* Space for fixed header */
+    }
+
+    header {
+      background: #fff;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      animation: slideDown 1s ease forwards;
+    }
+
+    @keyframes slideDown {
+      0% { transform: translateY(-100%); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: var(--main-color);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: var(--text-color);
+      font-weight: 500;
+      position: relative;
+    }
+
+    nav ul li a::after {
+      content: '';
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      bottom: -3px;
+      left: 0;
+      background: var(--main-color);
+      transition: width 0.4s ease;
+    }
+
+    nav ul li a:hover::after {
+      width: 100%;
+    }
+
+    h1 {
+      text-align: center;
+      margin: 40px 0;
+      font-size: 3em;
+      color: var(--main-color);
+    }
+
+    .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      padding: 50px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .service {
+      background: rgba(255, 255, 255, 0.05);
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      padding: 30px;
+      border-radius: 20px;
+      transition: 0.5s;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 20px var(--main-color);
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .service:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 30px #00ffd5, 0 0 50px #00bfa5 inset;
+    }
+
+    .service i {
+      font-size: 3em;
+      margin-bottom: 20px;
+      color: var(--main-color);
+      animation: spin 3s infinite linear;
+    }
+
+    .service h2 {
+      margin: 10px 0;
+      font-size: 1.8em;
+    }
+
+    .service p {
+      font-size: 1em;
+      color: #cfcfcf;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Header -->
+  <header>
+    <nav>
+      <div class="logo">MySite</div>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Main Heading -->
+  <h1 data-aos="zoom-in">Our Epic Services</h1>
+
+  <!-- Services Section -->
+  <div class="services">
+    <div class="service" data-aos="fade-up">
+      <i class="bi bi-code-slash"></i>
+      <h2>Web Development</h2>
+      <p>Stunning websites with blazing performance and creative UI/UX.</p>
+    </div>
+
+    <div class="service" data-aos="flip-left">
+      <i class="bi bi-phone"></i>
+      <h2>Mobile Apps</h2>
+      <p>Cross-platform apps built for scale, speed, and smoothness.</p>
+    </div>
+
+    <div class="service" data-aos="zoom-in">
+      <i class="bi bi-cloud-arrow-up"></i>
+      <h2>Cloud Services</h2>
+      <p>Deploy and scale seamlessly with our next-gen cloud solutions.</p>
+    </div>
+
+    <div class="service" data-aos="fade-right">
+      <i class="bi bi-shield-lock"></i>
+      <h2>Cyber Security</h2>
+      <p>Protect your data with our top-tier security services and audits.</p>
+    </div>
+
+    <div class="service" data-aos="flip-up">
+      <i class="bi bi-robot"></i>
+      <h2>AI Integration</h2>
+      <p>Supercharge your business with powerful AI-driven systems.</p>
+    </div>
+
+    <div class="service" data-aos="fade-down">
+      <i class="bi bi-bar-chart-line"></i>
+      <h2>Data Analytics</h2>
+      <p>Get insights that drive growth using our advanced analytics tools.</p>
+    </div>
+  </div>
+
+  <!-- AOS Animation Script -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1200,
+    });
+  </script>
+</body>
+</html>
